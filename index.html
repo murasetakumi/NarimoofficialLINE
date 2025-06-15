@@ -5,13 +5,28 @@
   <title>LINE追加のご案内</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Analytics タグ（非表示・自分だけ確認可能） -->
+  <!-- Google Analytics タグ -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF8NFQWH8D"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-JF8NFQWH8D');
+  </script>
+
+  <!-- LINE追加ボタンのクリックイベントを送信 -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var lineButton = document.getElementById('line-button');
+      if (lineButton) {
+        lineButton.addEventListener('click', function() {
+          gtag('event', 'click', {
+            'event_category': 'CTA',
+            'event_label': 'LINE追加ボタン'
+          });
+        });
+      }
+    });
   </script>
 
   <style>
@@ -90,7 +105,7 @@
 
   <div class="line-section">
     <div class="line-heading">LINE追加はこちらから</div>
-    <a class="cta-button" href="https://page.line.me/658aqhiv" target="_blank">▶ LINEを追加する</a>
+    <a class="cta-button" href="https://page.line.me/658aqhiv" target="_blank" id="line-button">▶ LINEを追加する</a>
   </div>
 </body>
 </html>
