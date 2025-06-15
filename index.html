@@ -14,16 +14,23 @@
     gtag('config', 'G-JF8NFQWH8D');
   </script>
 
-  <!-- LINE追加ボタンのクリックイベントを送信 -->
+  <!-- LINE追加ボタンのクリックイベントを送信してから遷移 -->
   <script>
-    window.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('DOMContentLoaded', function () {
       var lineButton = document.getElementById('line-button');
       if (lineButton) {
-        lineButton.addEventListener('click', function() {
+        lineButton.addEventListener('click', function (e) {
+          e.preventDefault(); // クリック即遷移を止める
+
           gtag('event', 'click', {
-            'event_category': 'CTA',
-            'event_label': 'LINE追加ボタン'
+            event_category: 'CTA',
+            event_label: 'LINE追加ボタン'
           });
+
+          // 少し遅らせてからLINEページを新タブで開く
+          setTimeout(function () {
+            window.open('https://page.line.me/658aqhiv', '_blank');
+          }, 300);
         });
       }
     });
